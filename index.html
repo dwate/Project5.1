@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Orinoco, vintage camera, vintage photography, retro cameras">
+    <meta name="description" content="Orinoco the vintage camera company, supplying your vintage photography needs">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png">
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+
+    <title>Orinoco- Vintage Camera Shop</title>
+
+</head>
+<header>
+<div class="orinoco">
+<img src="img/brand.jpg" alt="Orinoco- Vintage Cameras company logo" title="orinoco- vintage cameras" width="50%" height="50%">
+</div>
+<h3 class="vinShop">The Vintage Camera Shop</h3>
+<div class="headLinks">
+    <div class="home">
+        <a href="index.html" title="Home" alt="link to Orinocco Homepage" >Home</a>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Products</button>
+        <div class="dropdown-content">
+          <a href="ProductPage.html">Carl Zeiss Ikon</a>
+          <a href="#">Minolta GX9</a>
+          <a href="#">Kodak No.1a</a>
+        </div>
+    </div>
+    <div class="cart">
+        <a href="Cart.html" title="Cart" alt="link to shopping cart">Cart</a>
+    </div> 
+   
+</div>
+</header>
+
+<body>
+<h3 class="welcome">Welcome to Orinoco- Your one stop shop for all your vintage photography needs.</h2>
+<br>
+<hr>
+<h2>Latest Products</h2>
+<button id= "btn1">click here</button>
+<div id= "cameras"></div>
+<script>
+
+    document.getElementById('btn1').addEventListener('click', findCamera);
+    
+    function findCamera(){
+        var xhttp = new XMLHttpRequest();
+      //  console.log(xhttp);
+            xhttp.open("GET", "http://localhost:3000/api/cameras", true);
+      
+            xhttp.onload = function() {
+         if (this.readyState == 4 && this.status == 200) {
+             var cameras = JSON.parse(this.responseText);
+           
+
+             
+             var output = '';
+            
+           for(var i in cameras){
+             output += '<div>' +
+             '<h2>'+cameras[i].name+'</h2>' +
+             '<p>' +cameras[i].description+ '</p>' +
+             '<p>' +'£'+ +cameras[i].price+ '</p>' +
+             '<button>' +'More Info'+ '</button>' +
+             '<button>' +'Add to Cart'+ '</button>' +
+             '<img>' +cameras[i].imageUrl+ '</img>' +
+             '</div>'
+               
+           }
+           document.getElementById('cameras').innerHTML = output;
+         //  console.log(cameras[0,1]name);
+      //     let CamImg = document.createElement('img');
+            
+            }
+    }
+   xhttp.send();
+    }
+            
+</script>
+
+<hr>
+</body>
+<footer>
+    
+</footer>
+
+</html>

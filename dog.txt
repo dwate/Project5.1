@@ -1,0 +1,26 @@
+jggkhjhjhjhjkhjkhffdd
+<div class="productList">
+    <ul id="cameras"></ul>
+    <div class="item">
+        <img src="img/vcam_1.jpg" alt="Carl Zeiss Ikon camera system" title="Zeiss Ikon camera system" width="10%" height="10%">
+        <div class="itemDes">
+            <h3>Carl Zeiss Ikon</h3>
+            <p>Description for Zeiss Ikon</p>
+        </div>
+    </div>
+    <div class="item">
+        <img src="img/vcam_4.jpg" alt="Minolta XG9 camera system" title="Minolta XG9 camera system" width="10%" height="10%">
+       <div class="itemDes">
+           <h3>Minolta XG9 </h3>
+           <p>Description for Minolta XG9</p>
+        </div> 
+    </div>
+    <div class="item">
+        <img src="img/vcam_3.jpg" alt="Kodak No.1a pocket camera" title="Kodak No.1a pocket camera" width="10%" height="10%">
+        <div class="itemDes">
+            <h3>Eastman Kodak No.1a</h3>
+            <p>Description for Kodak No.1a</p>
+        </div>
+    </div>
+   
+</div>
