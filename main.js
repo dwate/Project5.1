@@ -1,19 +1,40 @@
-// loadJson('http://localhost:3000/api/cameras');
+//variables
+
+const cartBtn = document.getElementById("cartBtn");
+const closeCtBtn = document.getElementById("closeCartBtn");
+const clearCtBtn = document.getElementById("clearCartBtn");
+const cartDOM = document.getElementById("cartBox");
+const cartOverlay = document.getElementById("cart-overlays");
+const cartItems = document.getElementById("cart-items");
+const cartContent = document.getElementById("cart-contents");
+const cartTotal = document.getElementById("cart-totals");
+const camerasDOM = document.getElementById("cameras");
+
+let cart = [];
+// getting the products
+class Products {
+async getProducts(){
+ try {
+    let result = await fetch('http://localhost:3000/api/cameras')
+    let data = await result.json();
+    return data;  
+ } catch (error) {
+    console.log(error);
+ }
+ }
+}
+//display products
+class UI {}
+//local storage 
+class Storage {}
+
+document.addEventListener("DOMContentLoaded", ()=>{
+const ui = new UI();
+const products = new Products();
+
+// get all products
+products.getProducts().then(data => console.log(data));
+
+})
 
 
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-           // Typical action to be performed when the document is ready:
-           console.log(xhttp.responseText);
-           var response = JSON.parse(xhttp.responseText);
-          // document.getElementById("demo").innerHTML = xhttp.responseText;
-       //var output = '';
-       //for(var i = 0;i < cameras.length; i++) {
-         //  output += '<li>' +name[i].
-     //  }
-        }
-    };
-    xhttp.open("GET", "http://localhost:3000/api/cameras", true);
-    xhttp.send();
