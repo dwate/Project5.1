@@ -5,11 +5,11 @@
              if (this.readyState == 4 && this.status == 200) {
              var cameras = JSON.parse(this.responseText);
            
-         //   var camID = '4';
+           var camID = '4';
  //  var camInfo = '';
-        let camID =+ camInfo;
-
-             var detOutput = '';
+     //   var camID = sessionStorage.getItem(camInfo);
+          //    console.log(camInfo);
+          var detOutput = '';
             
               {
              detOutput = '<div class="camDetails">' +
@@ -21,11 +21,11 @@
              '<button>' +'Add to Cart'+ '</button></div>' +
              '</div>'
              console.log(camID);
-            }
+            } 
            
             document.getElementById('cameras').innerHTML = detOutput;
            
-            }
+            } 
           };
 
     xhttp.open("GET", "http://localhost:3000/api/cameras", true)

@@ -56,7 +56,7 @@
              var cameras = JSON.parse(this.responseText);
            
              var output = '';
-            let camInfo = '3';
+         //   let camInfo = '3';
 
              for(var i in cameras){
              output += '<div id="camDetails">' +
@@ -83,17 +83,15 @@
 
     //open webpage more info
     function moreInfo(camInfo) {
-     
  
-  //  var camID = camInfo;
+   // var camID = camInfo;
   //  console.log(camID);
-  //  console.log(camInfo);
     
-
-
+    sessionStorage.setItem(camInfo, 1);
+    console.log(camInfo);
    window.open("ProductPage.html", self);
-    return camInfo;
-    }
+    } 
+  
     //Display Cart Overlay
     function showCart(){
       console.log("open cart");
@@ -106,7 +104,7 @@
       }
     
     //Add item to Cart
-    var cartOutput =''; 
+   // var cartOutput =''; 
     function addToCart() {
     //  console.log(camerasCart);
       var xhttp2 = new XMLHttpRequest();
