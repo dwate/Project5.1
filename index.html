@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <link rel="shortcut icon" type="image/png" href="img/favicon.png">
     <link href="css/style.css" type="text/css" rel="stylesheet">
-
+    
     <title>Orinoco- Vintage Camera Shop</title>
 
 </head>
@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="cart">
-        <button class="cart-btn" id="cartBtn" onclick= "showCart()">Cart</button>
+        <span class="cart-btn" id="cartBtn" onclick= "showCart()">Cart</span>
     </div> 
    
 </div>
@@ -103,60 +103,27 @@
       document.getElementById('cart-overlays').className = "cart-overlay";
       }
     
-    //Add item to Cart
-   // var cartOutput =''; 
-    function addToCart() {
-    //  console.log(camerasCart);
-      var xhttp2 = new XMLHttpRequest();
-      xhttp2.onload = function() {
-             if (this.readyState == 4 && this.status == 200) {
-             var camerasCart = JSON.parse(this.responseText);
-      for(var i in camerasCart){
-        cartOutput += '<div class="cart-item" id="cart-items">' +
-         '<p><img src="' +camerasCart[i].imageUrl+ '" alt="' +camerasCart[i].name+ '" width="20%" height="20%"/></p>' +
-         '<h4>'+camerasCart[i].name+'</h4>' +
-         '<p>' +'£'+ +camerasCart[i].price+ '</p>' +
-           '</div>'
-      }
-      console.log(camerasCart);
-      document.getElementById('cart-contents').innerHTML = cartOutput;
-      xhttp2.open("GET", "http://localhost:3000/api/cameras", true)
-    xhttp2.send();
-    
-             }
-            }
-    };
-    /*  cartOutput += '<div class="cart-item" id="cart-items">' +
-         '<p><img src="' +cameras[i].imageUrl+ '" alt="' +cameras[i].name+ '" width="20%" height="20%"/></p>' +
-         '<h4>'+cameras[i].name+'</h4>' +
-         '<p>' +'£'+ +cameras[i].price+ '</p>' +
-           '</div>'
-     */
+   </script>
 
-
-</script>
-<script src="main.js"></script>
 <!--cart-->
 <div class="cart-overlay" id="cart-overlays">
-  <div class="cart" id="cartBox">
+  <div class="carts" id="cartBox">
     <span class="close-cart">
 
     </span>
     <button class="close-btn" id="closeCartBtn" onclick="hideCart()">X</button>
-    <h2>Cart</h2>
+    <h2 class="cartTitle">Cart</h2>
     <div class= "cart-content" id="cart-contents">
       <!--cart item-->
       <div class="cart-item" id="cart-items">
-        <img src="./img/vcam_1.jpg" alt="camera picture" width="20%" height="20%" />
-        <div>
-          <h4>Camera</h4>
-          <h5>price</h5>
-          <span class="remove-item"></span>
-        </div>
-        <div>
-          <button class="minus-btn">-</button>
-          <p class="item-amount">1</p>
-          <button class="plus-btn">+</button>      
+          <div class="cart-item-display">
+            <img src="./img/vcam_1.jpg" alt="camera picture" width="30%" height="30%" />
+            <h4>Camera</h4>
+          </div>
+          <span class="cart-item-price">price</span>
+        <div class="cart-quantity">
+          <input class="item-quantity-input" type="number" value="1"></input>
+          <button class="remove-item" type="button"> REMOVE</button>      
           </div>
       </div>
     </div>
@@ -167,6 +134,7 @@
   </div>
 </div>
 <hr>
+<script src="cartAdd.js" async></script>
 </body>
 <footer>
  <div class="foot">

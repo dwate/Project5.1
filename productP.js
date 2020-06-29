@@ -5,9 +5,9 @@
              if (this.readyState == 4 && this.status == 200) {
              var cameras = JSON.parse(this.responseText);
            
-           var camID = '4';
+        var camID = '4';
  //  var camInfo = '';
-     //   var camID = sessionStorage.getItem(camInfo);
+    //    var camID = sessionStorage.getItem(camInfo);
           //    console.log(camInfo);
           var detOutput = '';
             
