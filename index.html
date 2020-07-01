@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <link rel="shortcut icon" type="image/png" href="img/favicon.png">
     <link href="css/style.css" type="text/css" rel="stylesheet">
-    
+    <script src="cartAdd.js" async></script>
     <title>Orinoco- Vintage Camera Shop</title>
 
 </head>
@@ -60,12 +60,12 @@
 
              for(var i in cameras){
              output += '<div id="camDetails">' +
-             '<h2>'+cameras[i].name+'</h2>' +
-             '<p><img src="' +cameras[i].imageUrl+ '" alt="' +cameras[i].name+ '" width="250"/></p>' +
+             '<h2 class="camItemName">'+cameras[i].name+'</h2>' +
+             '<p><img class="camItemImage" src="' +cameras[i].imageUrl+ '" alt="' +cameras[i].name+ '" width="250"/></p>' +
              '<div><p>' +cameras[i].description+ '</p>' +
-             '<p>' +'£'+ +cameras[i].price+ '</p>' +
+             '<p class="camItemPrice">' +'£'+ +cameras[i].price+ '</p>' +
              '<button id="' +[i]+'" onclick="moreInfo('+[i]+')">' +'More Info'+ '</button>' +
-             '<button onclick="addToCart(i=' +[i]+ ')">' +'Add to Cart'+ '</button></div>' +
+             '<button class= "addToCartButton">' +'Add to Cart'+ '</button></div>' +
              '<p>' +[i]+ '</p>' +
              '</div>'
              // console.log(cameras);
@@ -120,21 +120,32 @@
             <img src="./img/vcam_1.jpg" alt="camera picture" width="30%" height="30%" />
             <h4>Camera</h4>
           </div>
-          <span class="cart-item-price">price</span>
+          <span class="cart-item-price">£100.00</span>
         <div class="cart-quantity">
           <input class="item-quantity-input" type="number" value="1"></input>
           <button class="remove-item" type="button"> REMOVE</button>      
           </div>
       </div>
+      <div class="cart-item" id="cart-items">
+        <div class="cart-item-display">
+          <img src="./img/vcam_1.jpg" alt="camera picture" width="30%" height="30%" />
+          <h4 class="cartItemTitle">Camera</h4>
+        </div>
+        <span class="cart-item-price">£100.00</span>
+      <div class="cart-quantity">
+        <input class="item-quantity-input" type="number" value="1"></input>
+        <button class="remove-item" type="button"> REMOVE</button>      
+        </div>
+    </div>
     </div>
       <div class="cart-footer">
-        <h3>Your Total: £ <span class="cart-total" id="cart-totals">0</span></h3>
+        <h3>Your Total:</h3> <span class="cart-total" id="cart-totals">0</span>
         <button class="clear-cart" id="clearCartBtn">clear cart</button>
       </div>
   </div>
 </div>
 <hr>
-<script src="cartAdd.js" async></script>
+
 </body>
 <footer>
  <div class="foot">

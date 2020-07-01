@@ -208,3 +208,11 @@
     z-index: 2;
     visibility: visible;
   }
+
+  .cart-footer {
+    display:flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    color: white;
+  }
