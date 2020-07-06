@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <link rel="shortcut icon" type="image/png" href="img/favicon.png">
     <link href="css/style.css" type="text/css" rel="stylesheet">
-    <script src="cartAdd.js" async></script>
+   
     <title>Orinoco- Vintage Camera Shop</title>
 
 </head>
@@ -65,13 +65,17 @@
              '<div><p>' +cameras[i].description+ '</p>' +
              '<p class="camItemPrice">' +'£'+ +cameras[i].price+ '</p>' +
              '<button id="' +[i]+'" onclick="moreInfo('+[i]+')">' +'More Info'+ '</button>' +
-             '<button class= "addToCartButton">' +'Add to Cart'+ '</button></div>' +
+             '<button class="addToCartButton">' +'Add to Cart'+ '</button></div>' +
              '<p>' +[i]+ '</p>' +
              '</div>'
              // console.log(cameras);
             }
            
             document.getElementById('cameras').innerHTML = output;
+            for (var i = 0; i < output.length; i++) {
+              document.getElementsByClassName('addToCartButton')[0].addEventListener('click', addToCartClicked)
+            }
+
         //    const camDet = document.getElementById('camDetails');
  
           //  camDet.classList.add('itemInfo');
@@ -118,7 +122,7 @@
       <div class="cart-item" id="cart-items">
           <div class="cart-item-display">
             <img src="./img/vcam_1.jpg" alt="camera picture" width="30%" height="30%" />
-            <h4>Camera</h4>
+            <span class="cartItemTitle">Camera</span>
           </div>
           <span class="cart-item-price">£100.00</span>
         <div class="cart-quantity">
@@ -129,7 +133,7 @@
       <div class="cart-item" id="cart-items">
         <div class="cart-item-display">
           <img src="./img/vcam_1.jpg" alt="camera picture" width="30%" height="30%" />
-          <h4 class="cartItemTitle">Camera</h4>
+          <span class="cartItemTitle">Camera</span>
         </div>
         <span class="cart-item-price">£100.00</span>
       <div class="cart-quantity">
@@ -145,7 +149,7 @@
   </div>
 </div>
 <hr>
-
+<script src="cartAdd.js" async></script>
 </body>
 <footer>
  <div class="foot">

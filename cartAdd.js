@@ -63,7 +63,7 @@ function addItemToCart(title, price, imageSrc) {
     var cartRowContents = `
     <div class="cart-item-display">
       <img src="${imageSrc}" alt="camera picture" width="30%" height="30%" />
-      <h4 class="cartItemTitle">${title}</h4>
+      <span class="cartItemTitle">${title}</span>
       </div>
       <span class="cart-item-price">${price}</span>
     <div class="cart-quantity">
@@ -77,14 +77,14 @@ function addItemToCart(title, price, imageSrc) {
 }
 
 function updateCartTotal() {
-    var cartItemContainer = document.getElementsByClassName('cart-item')[0]
-   var cartRows = document.getElementsByClassName('cart-item-display')
+    var cartItemContainer = document.getElementsByClassName('cart-content')[0]
+   var cartRows = cartItemContainer.getElementsByClassName('cart-item')
    var total = 0
    for (var i = 0; i < cartRows.length; i++) {
        var cartRow = cartRows[i]
        var priceElement = cartRow.getElementsByClassName('cart-item-price')[0]
        var quantityElement = cartRow.getElementsByClassName('item-quantity-input')[0]
-       var price = parseFloat(priceElement.innerText('£', ''))
+       var price = parseFloat(priceElement.innerText.replace('£', ''))
        var quantity = quantityElement.value
        total = total + (price * quantity)
     console.log(price)
