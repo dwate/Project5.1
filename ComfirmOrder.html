@@ -8,6 +8,7 @@
     <link rel="shortcut icon" type="image/png" href="img/favicon.png">
     <link href="css/style.css" type="text/css" rel="stylesheet">
 
+
     <title>Orinoco- Order Confirmation!</title>
 
 </head>
@@ -20,24 +21,75 @@
         <div class="home">
             <a href="index.html" title="Home" alt="link to Orinocco Homepage" >Home</a>
         </div>
-        <div class="dropdown">
-            <button class="dropbtn">Products</button>
-            <div class="dropdown-content">
-                <a href="ProductPage.html">Carl Zeiss Ikon</a>
-                <a href="#">Minolta GX9</a>
-                <a href="#">Kodak No.1a</a>
-            </div>
-        </div>
+       <div>
+
+       </div>
         <div class="cart">
-            <a href="Cart.html" title="Cart" alt="link to shopping cart">Cart</a>
+             <span class="cart-btn" id="cartBtn" onclick= "showCart()">Cart</span>
         </div> 
        
     </div>
     </header>
 
 <body>
+        
+<p>Confirm Order</p>
+<div class="cart-content" id="cart-item-all"></div>
+<div><p>Total</p><span class="cart-total "id="cash-total-all"></span></div>
+<form name="sendOrder" onsubmit="return orderAllItems()">
+    <h2>Delivery Details</h2>
+    <label for="fname">First name:</label>
+    <input type="text" id="fname" name="fname"><br><br>
+    <label for="lname">Last name:</label>
+    <input type="text" id="lname" name="lname"><br><br>
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address"><br><br>
+    <label for="acity">City:</label>
+    <input type="text" id="acity" name="acity"><br><br>
+    <label for="emailadd">E-mail address:</label>
+    <input type="text" id="emailadd" name="emailadd"><br><br>
+    <input class="orderButton" type="submit" value="Order Items">
+  </form>
 
+<div w3-include-html="CartModule.html"></div>
+
+    <script src="cartAdd.js" async></script>
+    <script src="CartLoadModule.js" async></script>
+    <script>
+    //Order Validation
+    function orderAllItems() {
+        var purchaseAll = document.getElementsByClassName('cart-content')[0].innerHTML
+    if (purchaseAll.length < 6 ) {
+         //   console.log(purchaseAll)
+            alert('You have removed all of the items from the cart.');
+            return;
+      }  else {   
+
+        var firstName = document.forms["sendOrder"]["fname"].value;
+        if (firstName == "") {
+            alert("First Name is required");
+            return false;
+        }
+        var lastName = document.forms["sendOrder"]["lname"].value;
+        if (lastName == "") {
+            alert("Last Name is required");
+            return false;
+        }
+    }
+    }
+    </script>
+    <script>
+      //  includeHTML();
+
+    //  var purchaseTotalContent = localStorage.getItem('numberTotal');
+      var purchaseItemAll = localStorage.getItem('purchaseAll');
+      var cashAllItems = document.getElementsByClassName('cart-content')[0]
+          cashAllItems.innerHTML = purchaseItemAll;
+          updateCartTotal()
+    </script>
 </body>
-<footer></footer>
+<footer><div class="foot">
+    <p>Create by Dave 2020</p>
+  </div>  </footer>
 
 </html>

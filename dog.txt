@@ -24,3 +24,27 @@ jggkhjhjhjhjkhjkhffdd
     </div>
    
 </div>
+
+  <!--cart item-->
+    <!--  <div class="cart-item" id="cart-items">
+          <div class="cart-item-display">
+            <img src="./img/vcam_1.jpg" alt="camera picture" width="30%" height="30%" />
+            <span class="cartItemTitle">Camera</span>
+          </div>
+          <span class="cart-item-price">£100.00</span>
+        <div class="cart-quantity">
+          <input class="item-quantity-input" type="number" value="1"></input>
+          <button class="remove-item" type="button"> REMOVE</button>      
+          </div>
+      </div>
+      <div class="cart-item" id="cart-items">
+        <div class="cart-item-display">
+          <img src="./img/vcam_1.jpg" alt="camera picture" width="30%" height="30%" />
+          <span class="cartItemTitle">Camera</span>
+        </div>
+        <span class="cart-item-price">£100.00</span>
+      <div class="cart-quantity">
+        <input class="item-quantity-input" type="number" value="1"></input>
+        <button class="remove-item" type="button"> REMOVE</button>      
+        </div>
+    </div>  -->

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <link rel="shortcut icon" type="image/png" href="img/favicon.png">
     <link href="css/style.css" type="text/css" rel="stylesheet">
+    
 
     <title>Orinoco- Product</title>
 
@@ -20,25 +21,142 @@
         <div class="home">
             <a href="index.html" title="Home" alt="link to Orinocco Homepage" >Home</a>
         </div>
-        <div class="dropdown">
-            <button class="dropbtn">Products</button>
-            <div class="dropdown-content">
-                <a href="ProductPage.html">Carl Zeiss Ikon</a>
-                <a href="#">Minolta GX9</a>
-                <a href="#">Kodak No.1a</a>
-            </div>
+        <div>
+           
         </div>
         <div class="cart">
-            <a href="Cart.html" title="Cart" alt="link to shopping cart">Cart</a>
+            <span class="cart-btn" id="cartBtn" onclick= "showCart()">Cart</span>
         </div> 
        
     </div>
     </header>
 
 <body>
-    <div id="cameras"></div>
-<script src="productP.js"></script>
+    <div id="moreInfoCameras"></div>
+   
+   <!--Cart Display/Hide function-->
+   <script type= "text/javascript">
+//Display Item
+var camID = localStorage.getItem('camNum');
+   // console.log(camNumber)
+
+    var xhttp = new XMLHttpRequest();
+
+           xhttp.onload = function() {
+             if (this.readyState == 4 && this.status == 200) {
+             var cameras = JSON.parse(this.responseText);
+            // var camID = camInfo;
+           // var camInfo = 3;
+           
+  
+    //    var camID = sessionStorage.getItem(camInfo);
+          //    console.log(camInfo);
+          var detOutput = '';
+            
+              {
+             detOutput = '<div id="camDetails">' +
+             '<h2 class="camItemName">'+cameras[camID].name+'</h2>' +
+             '<p><img class="camItemImage" src="' +cameras[camID].imageUrl+ '" alt="' +cameras[camID].name+ '" width="250"/></p>' +
+             '<div id="check"><p>' +cameras[camID].description+ '</p>' +
+             '<p class="camItemPrice">' +'£'+ +cameras[camID].price+ '</p>' +
+             '<p class="hideID">' +cameras[i]._id+ '</p>' + 
+             
+             '<select>' +
+             '<option value="'+cameras[camID].lenses[0]+'">' +cameras[camID].lenses[0]+'</option>' +
+             '<option value="'+cameras[camID].lenses[1]+'">'+cameras[camID].lenses[1]+'</option>' +
+             '<option value="'+cameras[camID].lenses[2]+'">'+cameras[camID].lenses[1]+'</option>' +
+             '</select>' +
+           '<button class="addToCartButton" onclick= "showCart()">' +'Add to Cart'+ '</button></div>' + 
+             '</div>'
+            // console.log(detOutput);
+            
+            } 
+         
+            document.getElementById('moreInfoCameras').innerHTML = detOutput;
+            document.getElementsByClassName('addToCartButton')[0].addEventListener('click', addToCartClicked)
+           
+            } 
+          };
+
+    xhttp.open("GET", "http://localhost:3000/api/cameras", true)
+    xhttp.send();
+
+     //Display Cart Overlay
+     function showCart(){
+      console.log("open cart");
+      document.getElementById('cart-overlays').className = "transparentBcg";
+      var purchaseAll = document.getElementsByClassName('cart-content')[0].innerHTML
+    localStorage.setItem('purchaseAll', purchaseAll);
+
+    }
+
+      //close cart overlay
+      function hideCart(){
+      console.log("cart closed");
+      document.getElementById('cart-overlays').className = "cart-overlay";
+      }
+
+     //Purchase Order
+  function purchase() {
+    var purchaseAll = document.getElementsByClassName('cart-content')[0].innerHTML
+    if (purchaseAll.length < 6 ) {
+         //   console.log(purchaseAll)
+            alert('Please add items to cart');
+            return;
+      }  else {   
+    localStorage.setItem('purchaseAll', purchaseAll);
+    window.location.replace("ComfirmOrder.html");
+    }
+  }
+
+    </script>
+ <!--cart-->
+  <div class="cart-overlay" id="cart-overlays">
+    <div class="carts" id="cartBox">
+      <span class="close-cart"></span>
+      <button class="close-btn" id="closeCartBtn" onclick="hideCart()">X</button>
+      <h2 class="cartTitle">Cart</h2>
+      <div class= "cart-content" id="cart-contents">
+      </div>
+      <div class="cart-footer">
+        <div class="total-cart">
+          <h3>Your Total:</h3> <span class="cart-total" id="cart-totals">0</span>
+        </div>
+        <button class="purchase-cart" id="purchaseCart" onclick="purchase()">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+  <script src="cartAdd.js" async></script>
+    <script> 
+      var purchaseItemAll = localStorage.getItem('purchaseAll');
+      var cashAllItems = document.getElementsByClassName('cart-content')[0]
+      cashAllItems.innerHTML = purchaseItemAll;
+      
+      function updateCartTotal() {
+    var cartItemContainer = document.getElementsByClassName('cart-content')[0]
+   var cartRows = cartItemContainer.getElementsByClassName('cart-item')
+   var total = 0
+   for (var i = 0; i < cartRows.length; i++) {
+       var cartRow = cartRows[i]
+       var priceElement = cartRow.getElementsByClassName('cart-item-price')[0]
+       var quantityElement = cartRow.getElementsByClassName('item-quantity-input')[0]
+       var price = parseFloat(priceElement.innerText.replace('£', ''))
+       var quantity = quantityElement.value
+       total = total + (price * quantity)
+    console.log(price)
+   }
+   total = Math.round(total * 100) / 100
+   document.getElementsByClassName('cart-total')[0].innerText = '£' + total
+}
+
+
+    </script>
+
 </body>
-<footer></footer>
+
+<footer><div class="foot">
+    <p>Create by Dave 2020</p>
+  </div>  
+</footer>
 
 </html>

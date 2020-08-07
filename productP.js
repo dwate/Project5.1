@@ -1,12 +1,20 @@
 
+   function moreInfo(camInfo) {
+    console.log(camInfo);
+    localStorage.setItem('camNum', camInfo);
+    //   window.open("ProductPage.html", self);
+    var camID = localStorage.getItem('camNum');
+   // console.log(camNumber)
+
     var xhttp = new XMLHttpRequest();
 
            xhttp.onload = function() {
              if (this.readyState == 4 && this.status == 200) {
              var cameras = JSON.parse(this.responseText);
+             var camID = camInfo;
+        //     var camInfo = 3;
            
-        var camID = '4';
- //  var camInfo = '';
+  
     //    var camID = sessionStorage.getItem(camInfo);
           //    console.log(camInfo);
           var detOutput = '';
@@ -20,14 +28,19 @@
              '<p>' +cameras[camID].lenses+ '</p>' +
              '<button>' +'Add to Cart'+ '</button></div>' +
              '</div>'
-             console.log(camID);
+             console.log(detOutput);
+            
             } 
-           
-            document.getElementById('cameras').innerHTML = detOutput;
+         
+           // document.getElementById('moreInfoCameras').innerHTML = detOutput;
            
             } 
           };
 
     xhttp.open("GET", "http://localhost:3000/api/cameras", true)
     xhttp.send();
-   
+}
+
+    
+
+    

@@ -16,17 +16,12 @@
 <img src="img/brand.jpg" alt="Orinoco- Vintage Cameras company logo" title="orinoco- vintage cameras" width="50%" height="50%">
 </div>
 <h3 class="vinShop">The Vintage Camera Shop</h3>
-<div class="headLinks">
+<div class="headLinks" id="myHeader">
     <div class="home">
         <a href="index.html" title="Home" alt="link to Orinocco Homepage" >Home</a>
     </div>
-    <div class="dropdown">
-        <button class="dropbtn">Products</button>
-        <div class="dropdown-content">
-          <a href="ProductPage.html">Carl Zeiss Ikon</a>
-          <a href="#">Minolta GX9</a>
-          <a href="#">Kodak No.1a</a>
-        </div>
+    <div>
+
     </div>
     <div class="cart">
         <span class="cart-btn" id="cartBtn" onclick= "showCart()">Cart</span>
@@ -45,10 +40,8 @@
 <div id= "cameras"></div>
 <script type= "text/javascript">
 
-  //   document.getElementById('btn1').addEventListener('mouseleave', findCamera);
-    //  document.getElementById('btn1').onload = function() {findCamera()});
-
- //   function findCamera(){
+ 
+ //   Get All Products Displayed
         var xhttp = new XMLHttpRequest();
       //  console.log(xhttp);
            xhttp.onload = function() {
@@ -56,7 +49,7 @@
              var cameras = JSON.parse(this.responseText);
            
              var output = '';
-         //   let camInfo = '3';
+         
 
              for(var i in cameras){
              output += '<div id="camDetails">' +
@@ -64,16 +57,18 @@
              '<p><img class="camItemImage" src="' +cameras[i].imageUrl+ '" alt="' +cameras[i].name+ '" width="250"/></p>' +
              '<div><p>' +cameras[i].description+ '</p>' +
              '<p class="camItemPrice">' +'£'+ +cameras[i].price+ '</p>' +
+             '<p class="hideID">' +cameras[i]._id+ '</p>' +
              '<button id="' +[i]+'" onclick="moreInfo('+[i]+')">' +'More Info'+ '</button>' +
-             '<button class="addToCartButton">' +'Add to Cart'+ '</button></div>' +
-             '<p>' +[i]+ '</p>' +
+             '<button class="addToCartButton" onclick= "showCart()">' +'Add to Cart'+ '</button></div>' +
+            
              '</div>'
              // console.log(cameras);
             }
            
             document.getElementById('cameras').innerHTML = output;
-            for (var i = 0; i < output.length; i++) {
-              document.getElementsByClassName('addToCartButton')[0].addEventListener('click', addToCartClicked)
+           var cameraAddToCartB = document.getElementsByClassName('addToCartButton')
+            for (var i = 0; i < cameraAddToCartB.length; i++) {
+              document.getElementsByClassName('addToCartButton')[i].addEventListener('click', addToCartClicked)
             }
 
         //    const camDet = document.getElementById('camDetails');
@@ -85,16 +80,8 @@
     xhttp.open("GET", "http://localhost:3000/api/cameras", true)
     xhttp.send();
 
-    //open webpage more info
-    function moreInfo(camInfo) {
- 
-   // var camID = camInfo;
-  //  console.log(camID);
+   
     
-    sessionStorage.setItem(camInfo, 1);
-    console.log(camInfo);
-   window.open("ProductPage.html", self);
-    } 
   
     //Display Cart Overlay
     function showCart(){
@@ -105,51 +92,74 @@
       function hideCart(){
       console.log("cart closed");
       document.getElementById('cart-overlays').className = "cart-overlay";
-      }
-    
+    }
+
+    //More info local storage
+    function moreInfo(camInfo) {
+  //  console.log(camInfo);
+    localStorage.setItem('camNum', camInfo);
+    var purchaseAll = document.getElementsByClassName('cart-content')[0].innerHTML
+    localStorage.setItem('purchaseAll', purchaseAll);
+       window.location.replace("ProductPage.html", self);
+    }
+
+  //Purchase Order
+  function purchase() {
+    var purchaseAll = document.getElementsByClassName('cart-content')[0].innerHTML
+    if (purchaseAll.length < 6 ) {
+         //   console.log(purchaseAll)
+            alert('Please add items to cart');
+            return;
+      }  else {   
+    localStorage.setItem('purchaseAll', purchaseAll);
+    window.location.replace("ComfirmOrder.html");
+    }
+  }
+
+  
+
+  // When the user scrolls the page, execute myFunction
+window.onscroll = function() {myFunction()};
+
+// Get the header
+var header = document.getElementById("myHeader");
+
+// Get the offset position of the navbar
+var sticky = header.offsetTop;
+
+// Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+} 
+
    </script>
 
 <!--cart-->
 <div class="cart-overlay" id="cart-overlays">
   <div class="carts" id="cartBox">
-    <span class="close-cart">
-
-    </span>
+    <span class="close-cart"></span>
     <button class="close-btn" id="closeCartBtn" onclick="hideCart()">X</button>
     <h2 class="cartTitle">Cart</h2>
     <div class= "cart-content" id="cart-contents">
-      <!--cart item-->
-      <div class="cart-item" id="cart-items">
-          <div class="cart-item-display">
-            <img src="./img/vcam_1.jpg" alt="camera picture" width="30%" height="30%" />
-            <span class="cartItemTitle">Camera</span>
-          </div>
-          <span class="cart-item-price">£100.00</span>
-        <div class="cart-quantity">
-          <input class="item-quantity-input" type="number" value="1"></input>
-          <button class="remove-item" type="button"> REMOVE</button>      
-          </div>
-      </div>
-      <div class="cart-item" id="cart-items">
-        <div class="cart-item-display">
-          <img src="./img/vcam_1.jpg" alt="camera picture" width="30%" height="30%" />
-          <span class="cartItemTitle">Camera</span>
-        </div>
-        <span class="cart-item-price">£100.00</span>
-      <div class="cart-quantity">
-        <input class="item-quantity-input" type="number" value="1"></input>
-        <button class="remove-item" type="button"> REMOVE</button>      
-        </div>
     </div>
-    </div>
-      <div class="cart-footer">
+    <div class="cart-footer">
+      <div class="total-cart">
         <h3>Your Total:</h3> <span class="cart-total" id="cart-totals">0</span>
-        <button class="clear-cart" id="clearCartBtn">clear cart</button>
       </div>
+      <button class="purchase-cart" id="purchaseCart" onclick="purchase()">Proceed to Checkout</button>
+    </div>
   </div>
 </div>
 <hr>
 <script src="cartAdd.js" async></script>
+<script>//Get Cart items
+  var purchaseItemAll = localStorage.getItem('purchaseAll');
+      var cashAllItems = document.getElementsByClassName('cart-content')[0]
+      cashAllItems.innerHTML = purchaseItemAll;</script>
 </body>
 <footer>
  <div class="foot">

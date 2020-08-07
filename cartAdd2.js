@@ -51,8 +51,6 @@ function removeAllItems(event) {
 function removeCartItem(event) {
     var buttonClicked = event.target
     buttonClicked.parentElement.parentElement.remove()
-    var purchaseAll = document.getElementsByClassName('cart-content')[0].innerHTML
-    localStorage.setItem('purchaseAll', purchaseAll);
     updateCartTotal()
 }
 
@@ -67,13 +65,11 @@ function quantityChanged(event) {
 function addToCartClicked(event) {
     var button = event.target
     var shopItem = button.parentElement.parentElement
- 
     var title = shopItem.getElementsByClassName('camItemName')[0].innerText
     var price = shopItem.getElementsByClassName('camItemPrice')[0].innerText
     var imageSrc = shopItem.getElementsByClassName('camItemImage')[0].src
     var itemID = shopItem.getElementsByClassName('hideID')[0].innerText
     addItemToCart(title, price, imageSrc, itemID)
-
     updateCartTotal()
 }
 
@@ -105,8 +101,6 @@ function addItemToCart(title, price, imageSrc, itemID) {
     cartItems.append(cartRow)
     cartRow.getElementsByClassName('remove-item')[0].addEventListener('click', removeCartItem)
     cartRow.getElementsByClassName('item-quantity-input')[0].addEventListener('change', quantityChanged)
-    var purchaseAll = document.getElementsByClassName('cart-content')[0].innerHTML
-    localStorage.setItem('purchaseAll', purchaseAll);
 }
 
 function updateCartTotal() {
