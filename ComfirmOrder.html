@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <link rel="shortcut icon" type="image/png" href="img/favicon.png">
     <link href="css/style.css" type="text/css" rel="stylesheet">
-
+    <script src="orderForm.js" async></script> 
 
     <title>Orinoco- Order Confirmation!</title>
 
@@ -36,7 +36,7 @@
 <p>Confirm Order</p>
 <div class="cart-content" id="cart-item-all"></div>
 <div><p>Total</p><span class="cart-total "id="cash-total-all"></span></div>
-<form name="sendOrder" onsubmit="return orderAllItems()">
+<form class="sendOrder" name="sendOrder" onsubmit="return orderAllItems()">
     <h2>Delivery Details</h2>
     <label for="fname">First name:</label>
     <input type="text" id="fname" name="fname"><br><br>
@@ -48,13 +48,14 @@
     <input type="text" id="acity" name="acity"><br><br>
     <label for="emailadd">E-mail address:</label>
     <input type="text" id="emailadd" name="emailadd"><br><br>
-    <input class="orderButton" type="submit" value="Order Items">
+    <input class="orderButton" id="submitOrder" type="submit" value="Order Items">
   </form>
-
+<p id="response-message"></p>
 <div w3-include-html="CartModule.html"></div>
 
     <script src="cartAdd.js" async></script>
     <script src="CartLoadModule.js" async></script>
+    
     <script>
     //Order Validation
     function orderAllItems() {
@@ -65,15 +66,25 @@
             return;
       }  else {   
 
+        var fNameID = document.getElementById("fname")
+        var orderForm= document.forms["sendOrder"].length;
         var firstName = document.forms["sendOrder"]["fname"].value;
         if (firstName == "") {
-            alert("First Name is required");
+            alert("First Name is required")
+            fNameID.classList.add("emptyField");
             return false;
+        } else {
+            fNameID.classList.remove("emptyField");
+            
         }
+        var lNameID = document.getElementById("lname")
         var lastName = document.forms["sendOrder"]["lname"].value;
         if (lastName == "") {
             alert("Last Name is required");
+            lNameID.classList.add("emptyField");
             return false;
+        } else {
+            lNameID.classList.remove("emptyField");
         }
     }
     }

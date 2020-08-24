@@ -280,3 +280,19 @@
     padding: 20px;
     color: white;
   }
+
+  .sendOrder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 300px;
+    margin-left: 25%;
+  }
+
+  .emptyField {
+    border-color: red;
+  }
+
+.orderButton {
+  margin-top: 15px;
+}
