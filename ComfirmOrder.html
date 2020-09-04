@@ -24,9 +24,7 @@
        <div>
 
        </div>
-        <div class="cart">
-             <span class="cart-btn" id="cartBtn" onclick= "showCart()">Cart</span>
-        </div> 
+        
        
     </div>
     </header>
@@ -51,45 +49,12 @@
     <input class="orderButton" id="submitOrder" type="submit" value="Order Items">
   </form>
 <p id="response-message"></p>
+<p id="test"></p>
 <div w3-include-html="CartModule.html"></div>
 
     <script src="cartAdd.js" async></script>
     <script src="CartLoadModule.js" async></script>
-    
-    <script>
-    //Order Validation
-    function orderAllItems() {
-        var purchaseAll = document.getElementsByClassName('cart-content')[0].innerHTML
-    if (purchaseAll.length < 6 ) {
-         //   console.log(purchaseAll)
-            alert('You have removed all of the items from the cart.');
-            return;
-      }  else {   
-
-        var fNameID = document.getElementById("fname")
-        var orderForm= document.forms["sendOrder"].length;
-        var firstName = document.forms["sendOrder"]["fname"].value;
-        if (firstName == "") {
-            alert("First Name is required")
-            fNameID.classList.add("emptyField");
-            return false;
-        } else {
-            fNameID.classList.remove("emptyField");
-            
-        }
-        var lNameID = document.getElementById("lname")
-        var lastName = document.forms["sendOrder"]["lname"].value;
-        if (lastName == "") {
-            alert("Last Name is required");
-            lNameID.classList.add("emptyField");
-            return false;
-        } else {
-            lNameID.classList.remove("emptyField");
-        }
-    }
-    }
-    </script>
-    <script>
+        <script>
       //  includeHTML();
 
     //  var purchaseTotalContent = localStorage.getItem('numberTotal');

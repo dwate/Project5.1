@@ -71,9 +71,6 @@
               document.getElementsByClassName('addToCartButton')[i].addEventListener('click', addToCartClicked)
             }
 
-        //    const camDet = document.getElementById('camDetails');
- 
-          //  camDet.classList.add('itemInfo');
             }
           };
 
@@ -85,12 +82,12 @@
   
     //Display Cart Overlay
     function showCart(){
-      console.log("open cart");
+     // console.log("open cart");
       document.getElementById('cart-overlays').className = "transparentBcg";
     }
       //close cart overlay
       function hideCart(){
-      console.log("cart closed");
+    //  console.log("cart closed");
       document.getElementById('cart-overlays').className = "cart-overlay";
     }
 
@@ -116,7 +113,7 @@
     }
   }
 
-  
+ 
 
   // When the user scrolls the page, execute myFunction
 window.onscroll = function() {myFunction()};
@@ -159,7 +156,9 @@ function myFunction() {
 <script>//Get Cart items
   var purchaseItemAll = localStorage.getItem('purchaseAll');
       var cashAllItems = document.getElementsByClassName('cart-content')[0]
-      cashAllItems.innerHTML = purchaseItemAll;</script>
+      cashAllItems.innerHTML = purchaseItemAll;
+   
+      </script>
 </body>
 <footer>
  <div class="foot">

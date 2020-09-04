@@ -120,7 +120,7 @@ function updateCartTotal() {
        var price = parseFloat(priceElement.innerText.replace('£', ''))
        var quantity = quantityElement.value
        total = total + (price * quantity)
-    console.log(price)
+   // console.log(price)
    }
    total = Math.round(total * 100) / 100
    document.getElementsByClassName('cart-total')[0].innerText = '£' + total

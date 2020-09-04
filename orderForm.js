@@ -4,24 +4,65 @@ const lname = document.getElementById("lname");
 const address = document.getElementById("address");
 const city = document.getElementById("acity");
 const email = document.getElementById("emailadd");
-const _id = '5be1ed3f1c9d44000030b061';
- const responseMessage = document.getElementById('response-message');
-// const responseTitle = document.getElementById('response-title');
-// const responseId = document.getElementById('response-id');
-// const responseContent = document.getElementById('response-content');
+const _id = document.getElementsByClassName("cart-hide-ID");
+const responseMessage = document.getElementById('response-message');
+
 
 
 submitButton.addEventListener('click', ($event) => {
     $event.preventDefault();
-    const post = {
-        firstName: fname.value,
-        lastName: lname.value,
-        address: address.value,
-        city: city.value,
-        email: email.value,
-        _id: '5be1ed3f1c9d44000030b061'
 
+    //Form Validation
+
+//Check for Items in the Cart
+var purchaseAll = document.getElementsByClassName('cart-content')[0].innerHTML
+var fNameID = document.getElementById("fname")
+var orderForm= document.forms["sendOrder"].length;
+var firstName = document.forms["sendOrder"]["fname"].value;
+var lastName = document.forms["sendOrder"]["lname"].value;
+var custAddress = document.forms["sendOrder"]["address"].value;
+var custCity = document.forms["sendOrder"]["acity"].value;
+var custEmail = document.forms["sendOrder"]["emailadd"].value;   
+if (purchaseAll.length < 6 ) {
+         //   console.log(purchaseAll)
+            alert('You have removed all of the items from the cart.');
+            return;
+      }  else {   
+
+
+if (firstName == "" || lastName == "" || custAddress == "" || custCity == "" || custEmail == "") {
+    alert("Please fill in Required Details")
+  //  fNameID.classList.add("emptyField");
+    return false;
+}
+       }; /*else {
+    fNameID.classList.remove("emptyField");
+} */
+
+
+//Grab Product IDs
+var productArray = []
+for (var i = 0; i < _id.length; i++) {
+  const prodID = productArray.push(_id[i].innerText)         
+  }
+
+//Creates Post data to be sent to database
+    const post = {
+        contact:{firstName: fname.value, lastName: lname.value, address: address.value, city: city.value, email: email.value},
+        products: productArray
+       
+             /* contact: {
+            *   firstName: string,
+            *   lastName: string,
+            *   address: string,
+            *   city: string,
+            *   email: string
+            * } 5be1ed3f1c9d44000030b061
+            * products: [string] <-- array of product _id */
+        
     };
+      console.log(post.products)  
+      console.log(post.contact)
     submitOrderData(post)
 });
 
@@ -48,7 +89,10 @@ async function submitOrderData(post) {
     try {
         const requestPromise = makeRequest(post);
         const response = await requestPromise;
-        responseMessage.textContent = response.message;
+        responseMessage.textContent = response.contact;
+        localStorage.setItem('orderId', response.orderId);
+        localStorage.setItem('contact', response.contact);
+        localStorage.setItem('cameras', response.cameras);
     //    responseTitle.textContent = response.post.title;
    //     responseId.textContent = response.post.id;
    //     responseContent.textContent = response.post.content;
