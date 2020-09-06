@@ -61,8 +61,8 @@ for (var i = 0; i < _id.length; i++) {
             * products: [string] <-- array of product _id */
         
     };
-      console.log(post.products)  
-      console.log(post.contact)
+   //   console.log(post.products)  
+  //    console.log(post.contact)
     submitOrderData(post)
 });
 
@@ -89,10 +89,25 @@ async function submitOrderData(post) {
     try {
         const requestPromise = makeRequest(post);
         const response = await requestPromise;
-        responseMessage.textContent = response.contact;
+        responseMessage.textContent = response.orderId;
         localStorage.setItem('orderId', response.orderId);
-        localStorage.setItem('contact', response.contact);
-        localStorage.setItem('cameras', response.cameras);
+        localStorage.setItem('custFName', response.contact.firstName);
+        localStorage.setItem('custLName', response.contact.lastName);
+        localStorage.setItem('custAddress', response.contact.address);
+        localStorage.setItem('custCity', response.contact.city);
+        localStorage.setItem('custEmail', response.contact.email);
+        
+        var productsOrdered = response.products;
+        var cameraOrdered = []
+        for (var i = 0; i < productsOrdered.length; i++) {
+            const prodOrdered = cameraOrdered.push(productsOrdered[i].name)         
+           }
+           localStorage.setItem('products', cameraOrdered);
+       // console.log(response.contact)
+    //    console.log(productsOrdered[0].name) 
+       console.log(cameraOrdered)
+      //  window.location.replace("OrderComplete.html", self); 
+        window.open("OrderComplete.html", self);
     //    responseTitle.textContent = response.post.title;
    //     responseId.textContent = response.post.id;
    //     responseContent.textContent = response.post.content;
