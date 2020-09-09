@@ -4,6 +4,12 @@
     localStorage.setItem('camNum', camInfo);
     //   window.open("ProductPage.html", self);
     var camID = localStorage.getItem('camNum');
+    var quantAll = localStorage.getItem('quantTally'); 
+    var quantTT = quantAll.replace(/,/g, '');
+    var quantTitems = document.getElementsByClassName('item-quantity-input')
+          for (i =0 ; i < quantTitems.length; i++) {
+              quantTitems[i].value = quantTT[i]
+          }
    // console.log(camNumber)
 
     var xhttp = new XMLHttpRequest();

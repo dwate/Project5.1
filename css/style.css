@@ -123,8 +123,31 @@
     display:flex;
     justify-content: center;
     text-decoration: underline;
-
+    font-family: sans-serif;
   }
+
+  .ordComTitle {
+    display:flex;
+    justify-content: center;
+    text-decoration: underline;
+    font-family: sans-serif;
+    color: green;
+    font-size: xx-large;
+  }
+
+  .OrderTitles {
+    display:flex;
+    justify-content: center;
+    text-decoration: underline;
+    font-family: sans-serif;
+  }
+
+  .deliveryInfo {
+    display:flex;
+    justify-content: center;
+    font-family: sans-serif;
+  }
+
  .welcome {
   display:flex;
   justify-content: center;
@@ -163,7 +186,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    min-width: 300px;
+    min-width: 300px; 
     margin: 20px;
     align-content: space-between;
     justify-content: center;
@@ -295,4 +318,15 @@
 
 .orderButton {
   margin-top: 15px;
+}
+
+#moreInfoCameras {
+ display: flex;
+  margin-left: 20px;
+  justify-content: center;
+}
+
+.camItemName {
+  color: white;
+ 
 }

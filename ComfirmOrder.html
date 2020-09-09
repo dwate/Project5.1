@@ -45,7 +45,7 @@
     <label for="acity">City:</label>
     <input type="text" id="acity" name="acity"><br><br>
     <label for="emailadd">E-mail address:</label>
-    <input type="text" id="emailadd" name="emailadd"><br><br>
+    <input type="email" id="emailadd" name="emailadd" required><br><br>
     <input class="orderButton" id="submitOrder" type="submit" value="Order Items">
   </form>
 <p id="response-message"></p>
@@ -61,6 +61,14 @@
       var purchaseItemAll = localStorage.getItem('purchaseAll');
       var cashAllItems = document.getElementsByClassName('cart-content')[0]
           cashAllItems.innerHTML = purchaseItemAll;
+      var quantAll = localStorage.getItem('quantTally'); 
+      var quantTT = quantAll.replace(/,/g, '');
+      var quantTitems = document.getElementsByClassName('item-quantity-input')
+            for (i =0 ; i < quantTitems.length; i++) {
+                quantTitems[i].value = quantTT[i]
+            }
+// console.log(quantTitems) 
+        
           updateCartTotal()
     </script>
 </body>

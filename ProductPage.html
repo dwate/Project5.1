@@ -85,7 +85,12 @@ var camID = localStorage.getItem('camNum');
      function showCart(){
       console.log("open cart");
       document.getElementById('cart-overlays').className = "transparentBcg";
-      
+      var quantAll = localStorage.getItem('quantTally'); 
+      var quantTT = quantAll.replace(/,/g, '');
+      var quantTitems = document.getElementsByClassName('item-quantity-input')
+            for (i =0 ; i < quantTitems.length; i++) {
+                quantTitems[i].value = quantTT[i]
+            }
 
     }
 
@@ -102,7 +107,15 @@ var camID = localStorage.getItem('camNum');
          //   console.log(purchaseAll)
             alert('Please add items to cart');
             return;
-      }  else {   
+      }  else {      
+      var quantitycheck = document.getElementsByClassName('item-quantity-input');
+      var quantTally = []
+      
+      for (var i = 0; i < quantitycheck.length; i++) {
+          var quantCheck = quantTally.push(quantitycheck[i].value)
+          
+      } 
+      localStorage.setItem('quantTally', quantTally)
     localStorage.setItem('purchaseAll', purchaseAll);
     window.location.replace("ComfirmOrder.html");
     }

@@ -19,7 +19,7 @@
     <h3 class="vinShop">The Vintage Camera Shop</h3>
     <div class="headLinks">
         <div class="home">
-            <a href="index.html" title="Home" alt="link to Orinocco Homepage" >Home</a>
+            <a href="index.html" title="Home" onclick="returnHome()" alt="link to Orinocco Homepage" >Home</a>
         </div>
        <div>
 
@@ -30,23 +30,23 @@
     </header>
 
     <body>
-        <h2>Order Complete!</h2>
+        <p class="ordComTitle">Order Complete!</h2><br>
         <div>
-            <p>Order ID</p>
-            <div id="orderNumber"></div>
-            <p>Item's Ordered</p>
-            <div id="itemOrdered"></div>
-            <p>Your Item's will be shipped to the following address;</p>
-            <div id="custName"></div>
-            <div id="custAddLn1"></div>
-            <div id="custCity"></div><br>
-            <p>Delivery Details and receipt will be sent to the following E-mail Address;</p>
-            <div id="custEmailAdd"></div>
+            <p class="OrderTitles"><b>Order ID</b></p>
+            <div class="deliveryInfo" id="orderNumber"></div>
+            <p class="OrderTitles"><b>Item's Ordered;</b></p>
+            <div class="deliveryInfo" id="itemOrdered"></div>
+            <p class="OrderTitles"><b>Your Item's will be shipped to the following address;</b></p>
+            <div class="deliveryInfo" id="custName"></div>
+            <div class="deliveryInfo" id="custAddLn1"></div>
+            <div class="deliveryInfo" id="custCity"></div><br>
+            <p class="OrderTitles"><b>Delivery Details and receipt will be sent to the following E-mail Address;</b></p>
+            <div class="deliveryInfo" id="custEmailAdd"></div>
             <div></div>
             <p></p>
         </div>
 
-        <div>
+        <div class="deliveryInfo">
           <button class="CompletePurchase" onclick="returnHome()">Return to Homepage</button>  
         </div>
 <script>
@@ -59,25 +59,29 @@
     var customerCity = localStorage.getItem('custCity');
     var customerEAddress = localStorage.getItem('custEmail');
 
-
+    //Get DOM Elements
     var orderNumber = document.getElementById("orderNumber");
     var custName = document.getElementById("custName");
     var custAddLn1 = document.getElementById("custAddLn1");
     var cCity = document.getElementById("custCity");
     var cEmail = document.getElementById("custEmailAdd");
     var cCamera = document.getElementById('itemOrdered');
+    var cameraItems = camerasOrdered.replace(/,/g, '<br>');
+  //  console.log(cameraItems)
+
+
     orderNumber.innerHTML = orderID;
-    cCamera.innerHTML = camerasOrdered;
+    cCamera.innerHTML = cameraItems;
     custName.innerHTML = custFName + ' ' + custLName;
     custAddLn1.innerHTML = customerAddress;
     cCity.innerHTML = customerCity;
     cEmail.innerHTML = customerEAddress;
-    console.log(customerAddress)
+  //  console.log(customerAddress)
 
  //   var returnHome = document.getElementsByClassName('CompletePurchase');
  //   returnButton.addEventListener('click', ($event) => {
   //  
- function returnHome(){
+ function returnHome() {
     localStorage.clear();
     window.location.replace("index.html", self);
  }

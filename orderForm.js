@@ -1,3 +1,6 @@
+//Order Review and Delivery Form
+
+//Get DOM Elements for Form
 const submitButton = document.getElementById("submitOrder");
 const fname = document.getElementById("fname");
 const lname = document.getElementById("lname");
@@ -32,12 +35,10 @@ if (purchaseAll.length < 6 ) {
 
 if (firstName == "" || lastName == "" || custAddress == "" || custCity == "" || custEmail == "") {
     alert("Please fill in Required Details")
-  //  fNameID.classList.add("emptyField");
+  
     return false;
-}
-       }; /*else {
-    fNameID.classList.remove("emptyField");
-} */
+        }
+       }
 
 
 //Grab Product IDs
@@ -104,15 +105,15 @@ async function submitOrderData(post) {
            }
            localStorage.setItem('products', cameraOrdered);
        // console.log(response.contact)
-    //    console.log(productsOrdered[0].name) 
-       console.log(cameraOrdered)
-      //  window.location.replace("OrderComplete.html", self); 
-        window.open("OrderComplete.html", self);
+       //  console.log(productsOrdered[0].name) 
+       // console.log(cameraOrdered)
+       
+   //   window.open("OrderComplete.html", self);
     //    responseTitle.textContent = response.post.title;
    //     responseId.textContent = response.post.id;
    //     responseContent.textContent = response.post.content;
     } catch (errorResponse) {
         responseMessage.textContent = errorResponse.error;
-    }
+    }  window.location.replace("OrderComplete.html", self); 
 } 
 
